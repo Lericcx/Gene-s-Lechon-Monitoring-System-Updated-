@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene's Lechon - Sales Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+        <link rel="stylesheet" href="css/pos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-piggy-bank"></i>
+            <h1>Gene's <span>Lechon</span></h1>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="dashboard.html" class="active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="pos.html">
+                    <i class="fas fa-cash-register"></i>
+                    <span>POS System</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="sales.html">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Sales Monitoring</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="transactions.html">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="inventory.html">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="products.html">
+                    <i class="fas fa-utensils"></i>
+                    <span>Product Management</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div><i class="fas fa-user-shield"></i> Admin System</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="page-title">
+                <h2>SALES DASHBOARD</h2>
+                <p>Track sales performance, identify trends, and make data-driven decisions</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="current-date" id="currentDate"></div>
+                
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- View Options -->
+            <div class="view-options">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="timePeriod">Time Period</label>
+                        <select id="timePeriod">
+                            <option>Daily</option>
+                            <option>Weekly</option>
+                            <option>Monthly</option>
+                            <option>Yearly</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category Filter</label>
+                        <select id="categoryFilter">
+                            <option>All Categories</option>
+                            <option>Whole Lechon</option>
+                            <option>Lechon Belly</option>
+                            <option>Other Products</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon sales">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Total Sales (30 days)</h3>
+                        <div class="value">₱135,500.00</div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> 12.5% vs last month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon avg-sales">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Average Daily Sales</h3>
+                        <div class="value">₱4,516.67</div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> 8.2% increase
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon highest-sale">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Highest Sale</h3>
+                        <div class="value">₱8,500.00</div>
+                        <div class="metric-change">
+                            <i class="fas fa-calendar"></i> Oct 15, 2024
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon transactions">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Transactions Count</h3>
+                        <div class="value">30</div>
+                        <div class="metric-change">
+                            <i class="fas fa-users"></i> 15.4 per day
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <!-- Sales Trend Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>SALES TREND</h3>
+                        <div class="chart-actions">
+                            <button class="btn-chart-action" data-period="week">Week</button>
+                            <button class="btn-chart-action active" data-period="month">Month</button>
+                            <button class="btn-chart-action" data-period="quarter">Quarter</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="salesTrendChart"></canvas>
+                    </div>
+                    <div class="chart-note">Weekly sales trend for the last 4 weeks</div>
+                </div>
+                
+                <!-- Category Performance Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>CATEGORY PERFORMANCE</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    <div class="chart-note">Sales distribution by product category</div>
+                </div>
+            </div>
+
+            <!-- Peak Hours Analysis -->
+            <div class="peak-hours-card">
+                <div class="peak-hours-header">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>PEAK HOURS ANALYSIS</h3>
+                        <p>Identifies busiest times to optimize operations</p>
+                    </div>
+                    <button class="btn-view-details">View Details <i class="fas fa-arrow-right"></i></button>
+                </div>
+                
+                <div class="peak-hours-grid">
+                    <div class="hour-block">
+                        <div class="hour-time">8:00 AM</div>
+                        <div class="hour-sales">₱1,200</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 15%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block">
+                        <div class="hour-time">10:00 AM</div>
+                        <div class="hour-sales">₱2,500</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block">
+                        <div class="hour-time">12:00 PM</div>
+                        <div class="hour-sales">₱4,800</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 55%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block busy">
+                        <div class="hour-time">2:00 PM</div>
+                        <div class="hour-sales">₱6,500</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block peak">
+                        <div class="hour-time">4:00 PM</div>
+                        <div class="hour-sales">₱8,500</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block busy">
+                        <div class="hour-time">6:00 PM</div>
+                        <div class="hour-sales">₱7,200</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block">
+                        <div class="hour-time">8:00 PM</div>
+                        <div class="hour-sales">₱3,800</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hour-block">
+                        <div class="hour-time">10:00 PM</div>
+                        <div class="hour-sales">₱1,000</div>
+                        <div class="hour-progress">
+                            <div class="progress-bar" style="width: 12%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Performance Details -->
+            <div class="category-performance">
+                <div class="chart-header">
+                    <h3>CATEGORY PERFORMANCE DETAILS</h3>
+                    <button class="btn-export"><i class="fas fa-download"></i> Export</button>
+                </div>
+                
+                <div class="category-list">
+                    <div class="category-item">
+                        <div class="category-name">
+                            <div class="category-color" style="background-color: #c62828;"></div>
+                            Whole Lechon
+                        </div>
+                        <div class="category-sales">₱89,500</div>
+                        <div class="category-percentage">66.1%</div>
+                        <div class="category-change positive">
+                            <i class="fas fa-arrow-up"></i> 15%
+                        </div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-name">
+                            <div class="category-color" style="background-color: #ff9800;"></div>
+                            Lechon Belly
+                        </div>
+                        <div class="category-sales">₱32,000</div>
+                        <div class="category-percentage">23.6%</div>
+                        <div class="category-change positive">
+                            <i class="fas fa-arrow-up"></i> 8%
+                        </div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-name">
+                            <div class="category-color" style="background-color: #4caf50;"></div>
+                            Other Products
+                        </div>
+                        <div class="category-sales">₱14,000</div>
+                        <div class="category-percentage">10.3%</div>
+                        <div class="category-change negative">
+                            <i class="fas fa-arrow-down"></i> 2%
+                        </div>
+                    </div>
+                    
+                    <div class="category-item total">
+                        <div class="category-name">Total Sales</div>
+                        <div class="category-sales">₱135,500</div>
+                        <div class="category-percentage">100%</div>
+                        <div class="category-change positive">
+                            <i class="fas fa-arrow-up"></i> 12.5%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

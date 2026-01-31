@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene's Lechon - Transaction History</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-piggy-bank"></i>
+            <h1>Gene's <span>Lechon</span></h1>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="dashboard.html">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="pos.html">
+                    <i class="fas fa-cash-register"></i>
+                    <span>POS System</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="sales.html">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Sales Monitoring</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="transactions.html" class="active">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="inventory.html">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="products.html">
+                    <i class="fas fa-utensils"></i>
+                    <span>Product Management</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div><i class="fas fa-history"></i> Transaction History</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="page-title">
+                <h2>TRANSACTION HISTORY</h2>
+                <p>View, search, and analyze past transactions</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="current-date" id="currentDate"></div>
+                
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Transactions Content -->
+        <div class="transactions-container">
+            <!-- Transaction Filters -->
+            <div class="transaction-filters">
+                <div class="filter-group">
+                    <label for="dateRange">Date Range</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate" value="2024-10-01">
+                        <span>to</span>
+                        <input type="date" id="endDate" value="2024-10-31">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod">
+                        <option value="all">All Methods</option>
+                        <option value="cash">Cash</option>
+                        <option value="card">Card</option>
+                        <option value="online">Online</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="minAmount">Min Amount (₱)</label>
+                    <input type="number" id="minAmount" placeholder="0" min="0">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="maxAmount">Max Amount (₱)</label>
+                    <input type="number" id="maxAmount" placeholder="100000" min="0">
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn-primary" id="applyFilters">
+                        <i class="fas fa-filter"></i> Apply Filters
+                    </button>
+                    <button class="btn-secondary" id="resetFilters">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                    <button class="btn-secondary" id="exportTransactions">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Transaction Summary -->
+            <div class="transaction-summary">
+                <div class="summary-card">
+                    <div class="summary-icon total">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Total Transactions</h3>
+                        <div class="value" id="totalTransactions">0</div>
+                        <div class="summary-change">
+                            <i class="fas fa-arrow-up"></i> This month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon amount">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Total Amount</h3>
+                        <div class="value" id="totalAmount">₱0.00</div>
+                        <div class="summary-change">
+                            <i class="fas fa-arrow-up"></i> vs last month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon average">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Average Transaction</h3>
+                        <div class="value" id="averageTransaction">₱0.00</div>
+                        <div class="summary-change">
+                            <i class="fas fa-arrow-up"></i> 8.5% increase
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon methods">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Payment Methods</h3>
+                        <div class="value" id="paymentMethods">3</div>
+                        <div class="summary-change">
+                            Cash: 65%, Card: 25%, Online: 10%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="transactions-table-container">
+                <div class="table-header">
+                    <h3>TRANSACTIONS</h3>
+                    <div class="table-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchTransactions" placeholder="Search transactions...">
+                        </div>
+                        <button class="btn-secondary" id="refreshTransactions">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="transactions-table-wrapper">
+                    <table class="transactions-table" id="transactionsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date & Time</th>
+                                <th>Items</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsTableBody">
+                            <!-- Transactions will be loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-footer">
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prevPage" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                        <button class="pagination-btn" id="nextPage" disabled>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="rows-per-page">
+                        <span>Rows per page:</span>
+                        <select id="rowsPerPage">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction Charts -->
+            <div class="transaction-charts">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>DAILY TRANSACTIONS</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dailyTransactionsChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>PAYMENT METHOD DISTRIBUTION</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="paymentMethodChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Transaction Details Modal -->
+    <div class="modal" id="transactionDetailsModal">
+        <div class="modal-content wide">
+            <div class="modal-header">
+                <h3>TRANSACTION DETAILS</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="transaction-details" id="transactionDetails">
+                    <!-- Details will be loaded by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel">Close</button>
+                <button class="btn-primary" id="printReceiptBtn">
+                    <i class="fas fa-print"></i> Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/transactions.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

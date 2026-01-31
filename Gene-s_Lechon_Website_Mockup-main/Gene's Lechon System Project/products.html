@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene's Lechon - Product Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-piggy-bank"></i>
+            <h1>Gene's <span>Lechon</span></h1>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="dashboard.html">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="pos.html">
+                    <i class="fas fa-cash-register"></i>
+                    <span>POS System</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="sales.html">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Sales Monitoring</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="transactions.html">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="inventory.html">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="products.html" class="active">
+                    <i class="fas fa-utensils"></i>
+                    <span>Product Management</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div><i class="fas fa-utensils"></i> Product Management</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="page-title">
+                <h2>PRODUCT MANAGEMENT</h2>
+                <p>Manage menu items, pricing, and product categories</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="current-date" id="currentDate"></div>
+                
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Products Content -->
+        <div class="products-container">
+            <!-- Product Controls -->
+            <div class="product-controls">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchProducts" placeholder="Search products...">
+                </div>
+                
+                <div class="control-buttons">
+                    <button class="btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                    <button class="btn-secondary" id="addCategoryBtn">
+                        <i class="fas fa-folder-plus"></i> Add Category
+                    </button>
+                    <button class="btn-secondary" id="refreshProducts">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Categories -->
+            <div class="categories-section">
+                <h3>PRODUCT CATEGORIES</h3>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be loaded by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid-section">
+                <div class="section-header">
+                    <h3>PRODUCTS</h3>
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded by JavaScript -->
+                </div>
+                
+                <div class="products-list" id="productsList" style="display: none;">
+                    <!-- List view will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ADD NEW PRODUCT</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" placeholder="Enter product name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Category</label>
+                            <select id="productCategory" required>
+                                <option value="">Select Category</option>
+                                <!-- Categories will be loaded by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Price (₱)</label>
+                            <input type="number" id="productPrice" placeholder="0.00" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCost">Cost (₱)</label>
+                            <input type="number" id="productCost" placeholder="0.00" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productSKU">SKU Code</label>
+                            <input type="text" id="productSKU" placeholder="e.g., LCH-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="productUnit">Unit</label>
+                            <select id="productUnit">
+                                <option value="pcs">Pieces</option>
+                                <option value="kg">Kilogram</option>
+                                <option value="plate">Plate</option>
+                                <option value="serving">Serving</option>
+                                <option value="bottle">Bottle</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="3" placeholder="Enter product description..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" id="productActive" checked>
+                            <span>Product is active (available for sale)</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel">Cancel</button>
+                <button class="btn-primary" id="saveProductBtn">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div class="modal" id="addCategoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ADD NEW CATEGORY</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoryForm">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" id="categoryName" placeholder="Enter category name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categoryColor">Color Code</label>
+                        <input type="color" id="categoryColor" value="#c62828">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categoryIcon">Icon</label>
+                        <select id="categoryIcon">
+                            <option value="fas fa-piggy-bank">🐷 Lechon</option>
+                            <option value="fas fa-bacon">🥓 Belly</option>
+                            <option value="fas fa-utensils">🍽️ Utensils</option>
+                            <option value="fas fa-wine-bottle">🍾 Bottle</option>
+                            <option value="fas fa-wine-glass-alt">🍷 Drink</option>
+                            <option value="fas fa-pepper-hot">🌶️ Spicy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categoryDescription">Description</label>
+                        <textarea id="categoryDescription" rows="2" placeholder="Enter category description..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel">Cancel</button>
+                <button class="btn-primary" id="saveCategoryBtn">Save Category</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal" id="editProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>EDIT PRODUCT</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Same form as add product, will be populated with data -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel">Cancel</button>
+                <button class="btn-primary" id="updateProductBtn">Update Product</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

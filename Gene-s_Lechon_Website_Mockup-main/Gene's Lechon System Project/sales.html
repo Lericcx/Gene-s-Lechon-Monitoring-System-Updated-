@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene's Lechon - Sales Monitoring</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sales.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-piggy-bank"></i>
+            <h1>Gene's <span>Lechon</span></h1>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="dashboard.html">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="pos.html">
+                    <i class="fas fa-cash-register"></i>
+                    <span>POS System</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="sales.html" class="active">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Sales Monitoring</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="transactions.html">
+                    <i class="fas fa-history"></i>
+                    <span>Transaction History</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="inventory.html">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="products.html">
+                    <i class="fas fa-utensils"></i>
+                    <span>Product Management</span>
+                </a>
+            </li>
+            
+            <div class="nav-divider"></div>
+            
+            <li class="nav-item">
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div><i class="fas fa-chart-bar"></i> Sales Monitoring</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="page-title">
+                <h2>SALES MONITORING</h2>
+                <p>Detailed sales analysis and performance metrics</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="current-date" id="currentDate"></div>
+                
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sales Content -->
+        <div class="sales-container">
+            <!-- Sales Filters -->
+            <div class="sales-filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="salesPeriod">Time Period</label>
+                        <select id="salesPeriod">
+                            <option value="today">Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="thisWeek" selected>This Week</option>
+                            <option value="lastWeek">Last Week</option>
+                            <option value="thisMonth">This Month</option>
+                            <option value="lastMonth">Last Month</option>
+                            <option value="thisQuarter">This Quarter</option>
+                            <option value="lastQuarter">Last Quarter</option>
+                            <option value="thisYear">This Year</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group" id="customDateRange" style="display: none;">
+                        <label>Custom Range</label>
+                        <div class="date-range">
+                            <input type="date" id="customStartDate">
+                            <span>to</span>
+                            <input type="date" id="customEndDate">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="salesCategory">Category</label>
+                        <select id="salesCategory">
+                            <option value="all">All Categories</option>
+                            <option value="lechon">Whole Lechon</option>
+                            <option value="belly">Lechon Belly</option>
+                            <option value="other">Other Products</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="salesComparison">Compare With</label>
+                        <select id="salesComparison">
+                            <option value="none">No Comparison</option>
+                            <option value="previousPeriod">Previous Period</option>
+                            <option value="samePeriodLastYear">Same Period Last Year</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn-primary" id="applySalesFilters">
+                        <i class="fas fa-chart-line"></i> Update Charts
+                    </button>
+                    <button class="btn-secondary" id="exportSalesReport">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
+                    <button class="btn-secondary" id="printSalesReport">
+                        <i class="fas fa-print"></i> Print Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sales Overview -->
+            <div class="sales-overview">
+                <div class="overview-card">
+                    <div class="overview-icon total">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Total Sales</h3>
+                        <div class="value" id="totalSalesValue">₱0.00</div>
+                        <div class="overview-change" id="totalSalesChange">
+                            <i class="fas fa-arrow-up"></i> 0% vs previous period
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon transactions">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Transactions</h3>
+                        <div class="value" id="totalTransactionsValue">0</div>
+                        <div class="overview-change" id="transactionsChange">
+                            <i class="fas fa-arrow-up"></i> 0% vs previous period
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon average">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Average Order Value</h3>
+                        <div class="value" id="averageOrderValue">₱0.00</div>
+                        <div class="overview-change" id="averageOrderChange">
+                            <i class="fas fa-arrow-up"></i> 0% vs previous period
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-card">
+                    <div class="overview-icon best">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="overview-content">
+                        <h3>Best Selling Product</h3>
+                        <div class="value" id="bestProduct">None</div>
+                        <div class="overview-change" id="bestProductSales">
+                            0 units sold
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales Charts -->
+            <div class="sales-charts">
+                <div class="chart-card main-chart">
+                    <div class="chart-header">
+                        <h3>SALES TREND</h3>
+                        <div class="chart-actions">
+                            <button class="chart-btn active" data-type="line">Line</button>
+                            <button class="chart-btn" data-type="bar">Bar</button>
+                            <button class="chart-btn" data-type="area">Area</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="salesTrendChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card secondary-chart">
+                    <div class="chart-header">
+                        <h3>CATEGORY DISTRIBUTION</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoryDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hourly Sales & Top Products -->
+            <div class="sales-details">
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <h3>HOURLY SALES PERFORMANCE</h3>
+                        <div class="time-filter">
+                            <button class="time-btn active" data-period="today">Today</button>
+                            <button class="time-btn" data-period="week">Week</button>
+                            <button class="time-btn" data-period="month">Month</button>
+                        </div>
+                    </div>
+                    <div class="detail-container">
+                        <canvas id="hourlySalesChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <h3>TOP 5 PRODUCTS</h3>
+                        <div class="sort-options">
+                            <select id="topProductsSort">
+                                <option value="quantity">By Quantity</option>
+                                <option value="revenue">By Revenue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="products-list" id="topProductsList">
+                        <!-- Top products will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales Data Table -->
+            <div class="sales-table-container">
+                <div class="table-header">
+                    <h3>DETAILED SALES DATA</h3>
+                    <div class="table-actions">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchSales" placeholder="Search sales data...">
+                        </div>
+                        <button class="btn-secondary" id="refreshSalesData">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sales-table-wrapper">
+                    <table class="sales-table" id="salesTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transaction ID</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total Amount</th>
+                                <th>Payment Method</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salesTableBody">
+                            <!-- Sales data will be loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-footer">
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prevSalesPage" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info">Page <span id="currentSalesPage">1</span> of <span id="totalSalesPages">1</span></span>
+                        <button class="pagination-btn" id="nextSalesPage" disabled>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="rows-per-page">
+                        <span>Rows per page:</span>
+                        <select id="salesRowsPerPage">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sales Report Modal -->
+    <div class="modal" id="salesReportModal">
+        <div class="modal-content wide">
+            <div class="modal-header">
+                <h3>SALES REPORT</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="report-content" id="salesReportContent">
+                    <!-- Report will be generated by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel">Close</button>
+                <button class="btn-primary" id="printReportBtn">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/sales.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

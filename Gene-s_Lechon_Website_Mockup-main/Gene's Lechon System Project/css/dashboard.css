@@ -1,0 +1,499 @@
+/* dashboard.css - Updated with fixed layouts */
+
+/* Peak Hours Analysis - Fixed Layout */
+.peak-hours-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.peak-hours-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.peak-hours-header i {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    background: rgba(198, 40, 40, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.peak-hours-header div {
+    flex: 1;
+}
+
+.peak-hours-header h3 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.peak-hours-header p {
+    color: #7f8c8d;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.btn-view-details {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-view-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+}
+
+/* Peak Hours Grid - Fixed Layout */
+.peak-hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.hour-block {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.hour-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hour-block.busy {
+    border-color: #ff9800;
+    background: rgba(255, 152, 0, 0.05);
+}
+
+.hour-block.peak {
+    border-color: #c62828;
+    background: rgba(198, 40, 40, 0.05);
+    transform: scale(1.05);
+}
+
+.hour-block.peak::before {
+    content: 'PEAK';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.hour-time {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.hour-sales {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.hour-progress {
+    background: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff9800, var(--primary-color));
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Category Performance Details - Fixed Layout */
+.category-performance {
+    background: white;
+    border-radius: 12px;
+    margin: 20px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.category-performance .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.category-performance .chart-header h3 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.btn-export {
+    background: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+}
+
+/* Category List - Fixed Layout */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.category-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.category-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.category-item.total {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    color: white;
+    margin-top: 20px;
+    border-left-color: var(--primary-color);
+}
+
+.category-item.total .category-name,
+.category-item.total .category-sales,
+.category-item.total .category-percentage {
+    color: white;
+}
+
+.category-name {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.category-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category-sales {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: right;
+}
+
+.category-percentage {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    text-align: center;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.category-item.total .category-percentage {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.category-change {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.category-change.positive {
+    color: #27ae60;
+}
+
+.category-change.negative {
+    color: #e74c3c;
+}
+
+/* Charts Container - Improved Layout */
+.charts-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin: 20px;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.chart-card .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-card .chart-header h3 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.chart-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-chart-action {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #7f8c8d;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-chart-action:hover,
+.btn-chart-action.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.chart-container {
+    padding: 20px;
+    height: 300px;
+    position: relative;
+}
+
+.chart-note {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Responsive Design for Dashboard */
+@media (max-width: 1200px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .peak-hours-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .category-item {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .peak-hours-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .btn-view-details {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hour-block.peak {
+        transform: scale(1.02);
+    }
+}
+
+@media (max-width: 768px) {
+    .peak-hours-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .category-performance .chart-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .btn-export {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .category-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .category-name {
+        justify-content: center;
+    }
+    
+    .category-sales,
+    .category-percentage,
+    .category-change {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .peak-hours-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-card .chart-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .chart-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hour-block {
+        padding: 15px;
+    }
+    
+    .hour-time {
+        font-size: 1.1rem;
+    }
+    
+    .hour-sales {
+        font-size: 1.2rem;
+    }
+}
+
+/* Animation for card appearance */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.peak-hours-card,
+.category-performance,
+.chart-card {
+    animation: slideUp 0.6s ease-out;
+}
+
+/* Loading states */
+.loading {
+    position: relative;
+    min-height: 200px;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

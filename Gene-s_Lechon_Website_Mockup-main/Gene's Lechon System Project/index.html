@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene's Lechon - Home</title>
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+    <nav class="landing-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-piggy-bank"></i>
+                <h1>Gene's <span>Lechon</span></h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#contact">Contact</a>
+                <a href="login.html" class="btn-login">Admin Login</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Premium Lechon in Cagayan de Oro</h1>
+            <p>Authentic, crispy, and flavorful lechon made with generations of expertise</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-primary">View Menu</a>
+                <a href="#contact" class="btn-secondary">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Gene's Lechon</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>For over 20 years, Gene's Lechon has been serving the best roasted pig in Northern Mindanao. Our secret family recipe and traditional cooking methods ensure every bite is perfectly crispy and flavorful.</p>
+                    <p>We use only the freshest local ingredients and follow strict quality standards to deliver authentic lechon experience for all occasions - from family gatherings to grand celebrations.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/whole-lechon.jpg" alt="Our Lechon">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">Our Lechon Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3>Whole Lechon</h3>
+                        <span class="price-range">₱6,000 - ₱10,000</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul>
+                            <li>₱6,000 - 18 to 20 kls</li>
+                            <li>₱7,000 - 21 to 23 kls</li>
+                            <li>₱8,000 - 24 to 26 kls</li>
+                            <li>₱9,000 - 27 to 30 kls</li>
+                            <li>₱10,000 - 31 to 35 kls</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3>Lechon Belly</h3>
+                        <span class="price-range">₱1,800 - ₱3,200</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul>
+                            <li>₱1,800 - 3 kls</li>
+                            <li>₱2,700 - 5 kls</li>
+                            <li>₱3,200 - 6 kls</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-card-header">
+                        <h3>Special Orders</h3>
+                        <span class="price-range">Custom Pricing</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul>
+                            <li>Lechon Baka (Beef)</li>
+                            <li>Lechon Kambing (Goat)</li>
+                            <li>Lechon Manok (Chicken)</li>
+                            <li>Catering Services</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact & Location</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>123 Bulua, Cagayan de Oro City, Philippines</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p>+63 912 345 6789</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Business Hours</h3>
+                        <p>Monday - Sunday: 8:00 AM - 10:00 PM</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Pre-order Required</h3>
+                        <p>Whole lechon requires 24-hour advance order</p>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div id="map"></div>
+                    <div class="map-instructions">
+                        <p><i class="fas fa-info-circle"></i> Click on the map for directions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h2>Gene's <span>Lechon</span></h2>
+                    <p>Authentic Roasted Pig Since 2003</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#menu">Menu</a>
+                    <a href="#contact">Contact</a>
+                    <a href="login.html">Admin</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gene's Lechon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/map.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

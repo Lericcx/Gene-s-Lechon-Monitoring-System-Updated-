@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene's Lechon - Admin Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <div class="logo">
+                <i class="fas fa-piggy-bank"></i>
+                <h1>Gene's <span>Lechon</span></h1>
+            </div>
+            <p>Admin Dashboard Login</p>
+        </div>
+
+        <div class="login-card">
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Username
+                    </label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <button type="button" class="show-password" id="showPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="remember-forgot">
+                    <label class="checkbox">
+                        <input type="checkbox" id="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+
+                <div class="login-footer">
+                    <p>Demo Credentials:</p>
+                    <p><strong>Username:</strong> admin | <strong>Password:</strong> password123</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="login-features">
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Sales Analytics</h3>
+                <p>Monitor real-time sales data</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-cash-register"></i>
+                <h3>POS System</h3>
+                <p>Efficient point of sale</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-boxes"></i>
+                <h3>Inventory</h3>
+                <p>Track stock levels</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
